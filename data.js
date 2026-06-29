@@ -1731,7 +1731,7 @@ function generateChildTable(){
 					childCurrentStats[k] = Math.round(childCurrentStats[k] * 100) / 100;
 					childStatGrowth[k] = Math.round(childStatGrowth[k] * 100) / 100;
 				}
-				this["childRow" + childStats.rows.length + stats[k]].innerHTML = Math.min(childCurrentStats[k], classCaps.get(childReclasses[i][0])[k] + childCaps[k]) + stone[k];
+				this["childRow" + childStats.rows.length + stats[k]].innerHTML = Math.round((Math.min(childCurrentStats[k], classCaps.get(childReclasses[i][0])[k] + childCaps[k]) + stone[k]) * 100) / 100;
 				if (childCurrentStats[k] >= classCaps.get(childReclasses[i][0])[k] + childCaps[k]){
 					this["childRow" + childStats.rows.length + stats[k]].innerHTML = "<"+capFormat+">" + this["childRow" + childStats.rows.length + stats[k]].innerHTML +"</"+capFormat+">";
 				}
@@ -1877,7 +1877,7 @@ function generateSiblingTable(){
 					siblingCurrentStats[k] = Math.round(siblingCurrentStats[k] * 100) / 100;
 					siblingStatGrowth[k] = Math.round(siblingStatGrowth[k] * 100) / 100;
 				}
-				this["siblingRow" + siblingStats.rows.length + stats[k]].innerHTML = Math.min(siblingCurrentStats[k], classCaps.get(siblingReclasses[i][0])[k] + siblingCaps[k]) + stone[k];
+				this["siblingRow" + siblingStats.rows.length + stats[k]].innerHTML = Math.round((Math.min(siblingCurrentStats[k], classCaps.get(siblingReclasses[i][0])[k] + siblingCaps[k]) + stone[k]) * 100 ) / 100;
 				if (siblingCurrentStats[k] >= classCaps.get(siblingReclasses[i][0])[k] + siblingCaps[k]){
 					this["siblingRow" + siblingStats.rows.length + stats[k]].innerHTML = "<"+capFormat+">" + this["siblingRow" + siblingStats.rows.length + stats[k]].innerHTML +"</"+capFormat+">";
 				}
