@@ -574,6 +574,63 @@ const childBases = new Map([
 	["Nah", 		[ 5, 3, 3, 5, 6,  8, 3, 3]]
 ]);
 
+const pairUpBonuses = new Map([
+	["Tactician",		[0, 1, 1, 2, 2, 0, 0, 0, 0]],
+	["Grandmaster",		[0, 2, 2, 2, 2, 0, 0, 0, 0]],
+	["Lord (M)",		[0, 0, 0, 0, 3, 3, 0, 0, 0]],
+	["Lord (F)",		[0, 0, 0, 0, 3, 3, 0, 0, 0]],
+	["Great Lord (M)",	[0, 0, 0, 0, 4, 4, 0, 0, 0]],
+	["Great Lord (F)",	[0, 0, 0, 0, 4, 4, 0, 0, 0]],
+	["Cavalier",		[0, 2, 0, 1, 1, 0, 2, 0, 0]],
+	["Paladin",			[0, 2, 0, 2, 2, 0, 2, 0, 0]],
+	["Knight",			[0, 2, 0, 0, 0, 0, 4, 0, 0]],
+	["Great Knight",	[0, 3, 0, 0, 0, 0, 3, 0, 1]],
+	["General",			[0, 3, 0, 0, 0, 0, 5, 0, 0]],
+	["Barbarian",		[0, 4, 0, 0, 0, 0, 2, 0, 0]],
+	["Berserker",		[0, 5, 0, 0, 0, 0, 3, 0, 0]],
+	["Fighter",			[0, 4, 0, 0, 0, 0, 2, 0, 0]],
+	["Warrior",			[0, 5, 0, 0, 0, 0, 3, 0, 0]],
+	["Mercenary",		[0, 0, 0, 2, 3, 0, 1, 0, 0]],
+	["Hero",			[0, 0, 0, 3, 3, 0, 2, 0, 0]],
+	["Archer",			[0, 2, 0, 2, 0, 0, 2, 0, 0]],
+	["Bow Knight",		[0, 0, 0, 3, 3, 0, 0, 0, 1]],
+	["Sniper",			[0, 3, 0, 3, 0, 0, 2, 0, 0]],
+	["Myrmidon",		[0, 0, 0, 0, 4, 2, 0, 0, 0]],
+	["Swordmaster",		[0, 0, 0, 0, 5, 3, 0, 0, 0]],
+	["Thief",			[0, 0, 0, 0, 2, 2, 0, 0, 1]],
+	["Assassin",		[0, 2, 0, 0, 2, 4, 0, 0, 0]],
+	["Trickster",		[0, 0, 2, 1, 3, 0, 0, 0, 1]],
+	["Pegasus Knight",	[0, 0, 0, 0, 3, 0, 0, 3, 0]],
+	["Falcon Knight",	[0, 0, 0, 0, 4, 0, 0, 4, 0]],
+	["Dark Flier",		[0, 0, 3, 0, 3, 0, 0, 2, 0]],
+	["Wyvern Rider",	[0, 3, 0, 0, 0, 0, 3, 0, 0]],
+	["Wyvern Lord",		[0, 4, 0, 0, 0, 0, 4, 0, 0]],
+	["Griffon Rider",	[0, 3, 0, 0, 0, 1, 2, 0, 1]],
+	["Troubador",		[0, 0, 2, 0, 1, 0, 0, 3, 0]],
+	["Valkyrie",		[0, 0, 3, 0, 2, 0, 0, 3, 0]],
+	["Cleric/Priest",	[0, 0, 2, 0, 0, 2, 0, 2, 0]],
+	["Cleric",			[0, 0, 2, 0, 0, 2, 0, 2, 0]],
+	["Priest",			[0, 0, 2, 0, 0, 2, 0, 2, 0]],
+	["War Cleric/Monk",	[0, 2, 2, 0, 0, 2, 0, 2, 0]],
+	["War Cleric",		[0, 2, 2, 0, 0, 2, 0, 2, 0]],
+	["War Monk",		[0, 2, 2, 0, 0, 2, 0, 2, 0]],
+	["Mage",			[0, 0, 4, 2, 0, 0, 0, 0, 0]],
+	["Sage",			[0, 0, 4, 2, 0, 0, 0, 2, 0]],
+	["Dark Mage",		[0, 0, 3, 0, 0, 0, 3, 0, 0]],
+	["Dark Knight",		[0, 0, 2, 0, 0, 0, 3, 1, 1]],
+	["Sorcerer",		[0, 0, 3, 0, 0, 0, 2, 3, 0]],
+	["Villager",		[0, 0, 0, 3, 0, 3, 0, 0, 0]],
+	["Dancer",			[0, 0, 0, 0, 3, 3, 0, 0, 0]],
+	["Taguel (F)",		[0, 3, 0, 2, 3, 0, 0, 0, 0]],
+	["Taguel (M)",		[0, 3, 0, 2, 3, 0, 0, 0, 0]],
+	["Manakete",		[0, 2, 2, 0, 0, 0, 2, 2, 0]],
+	["Conqueror",		[0, 2, 0, 0, 2, 0, 2, 0, 1]],
+	["Dread Fighter",	[0, 3, 1, 0, 1, 0, 0, 3, 0]],
+	["Bride/Groom",		[0, 0, 2, 0, 2, 2, 0, 2, 0]],
+	["Bride",			[0, 0, 2, 0, 2, 2, 0, 2, 0]],
+	["Groom",			[0, 0, 2, 0, 2, 2, 0, 2, 0]],
+]);
+
 const dragonstone = [0, 8, 5, 3, 2, 0, 10, 7, 0];
 const dragonstonePlus = [0, 11, 6, 5, 4, 0, 13, 9, 0];
 const beaststone = [0, 3, 0, 5, 5, 4, 1, 0, 0];
@@ -1219,6 +1276,8 @@ function generateChildBases(){
 	childBaseStats[8] = classBases.get(childReclasses[0][0])[8];
 	generateChildTable();
 	updateChildLevels();
+	childPairUp();
+	childHP.innerHTML = 0;
 }
 
 function generateSiblingBases(){
@@ -1287,6 +1346,8 @@ function generateSiblingBases(){
 	siblingBaseStats[8] = classBases.get(siblingReclasses[0][0])[8];
 	generateSiblingTable();
 	updateSiblingLevels();
+	siblingPairUp();
+	siblingHP.innerHTML = 0;
 }
 
 function generateParentTable(){
@@ -1310,7 +1371,7 @@ function generateParentTable(){
 		parentStatGrowth[i] = parentCurrentStats[i] - classBases.get(charBases.get(parentName)[0])[i];
 	}
 	parentCurrentStats[9] = 0;
-	while (parentStats.rows.length > 1){
+	while (parentStats.rows.length > 2){
 		parentStats.deleteRow(1);
 	}
 	for (let i = 0; i < parentReclasses.length; i++){
@@ -1332,7 +1393,7 @@ function generateParentTable(){
 			}
 		}
 		if (i > 0){
-			let row = parentStats.insertRow(parentStats.rows.length);
+			let row = parentStats.insertRow(parentStats.rows.length - 1);
 			let currentClass = row.insertCell(0).outerHTML = "<th>Class</th>";
 			let level = row.insertCell(1).outerHTML = "<th>Level</th>";
 			let hp = row.insertCell(2).outerHTML = "<th>HP</th>";
@@ -1346,7 +1407,7 @@ function generateParentTable(){
 			let mov = row.insertCell(10).outerHTML = "<th>Mov</th>";
 			let internal = row.insertCell(11).outerHTML = "<th>Internal</th>";
 		}
-		let row = parentStats.insertRow(parentStats.rows.length);
+		let row = parentStats.insertRow(parentStats.rows.length - 1);
 		let currentClass = row.insertCell(0).innerHTML = '<span id="parentRow'+parentStats.rows.length+'class"></span>';
 		let level = row.insertCell(1).innerHTML = '<span id="parentRow'+parentStats.rows.length+'level"></span>';
 		let hp = row.insertCell(2).innerHTML = '<span id="parentRow'+parentStats.rows.length+'HP"></span>';
@@ -1391,7 +1452,7 @@ function generateParentTable(){
 		}
 		this["parentRow" + parentStats.rows.length + "internal"].innerHTML = "<b>"+(1*Math.min(parentCurrentStats[9], levelCap) + 1*startingLevel + 20*promotedClasses.includes(parentClassName))+"</b>";
 		for (let j = startingLevel+1; j <= parentReclasses[i][1]; j++){
-			let row = parentStats.insertRow(parentStats.rows.length);
+			let row = parentStats.insertRow(parentStats.rows.length - 1);
 			let currentClass = row.insertCell(0).innerHTML = '<span id="parentRow'+parentStats.rows.length+'class"></span>';
 			let level = row.insertCell(1).innerHTML = '<span id="parentRow'+parentStats.rows.length+'level"></span>';
 			let hp = row.insertCell(2).innerHTML = '<span id="parentRow'+parentStats.rows.length+'HP"></span>';
@@ -1444,6 +1505,7 @@ function generateParentTable(){
 			this["parentRow" + parentStats.rows.length + "internal"].innerHTML = "<b>"+(1*Math.min(parentCurrentStats[9], levelCap) + 1*j + 20*promotedClasses.includes(parentClassName))+"</b>";
 		}
 	}
+	parentPairUp();
 }
 
 function generateSpouseTable(){
@@ -1467,7 +1529,7 @@ function generateSpouseTable(){
 		spouseStatGrowth[i] = spouseCurrentStats[i] - classBases.get(charBases.get(spouseName)[0])[i];
 	}
 	spouseCurrentStats[9] = 0;
-	while (spouseStats.rows.length > 1){
+	while (spouseStats.rows.length > 2){
 		spouseStats.deleteRow(1);
 	}
 	for (let i = 0; i < spouseReclasses.length; i++){
@@ -1489,7 +1551,7 @@ function generateSpouseTable(){
 			}
 		}
 		if (i > 0){
-			let row = spouseStats.insertRow(spouseStats.rows.length);
+			let row = spouseStats.insertRow(spouseStats.rows.length - 1);
 			let currentClass = row.insertCell(0).outerHTML = "<th>Class</th>";
 			let level = row.insertCell(1).outerHTML = "<th>Level</th>";
 			let hp = row.insertCell(2).outerHTML = "<th>HP</th>";
@@ -1503,7 +1565,7 @@ function generateSpouseTable(){
 			let mov = row.insertCell(10).outerHTML = "<th>Mov</th>";
 			let internal = row.insertCell(11).outerHTML = "<th>Internal</th>";
 		}
-		let row = spouseStats.insertRow(spouseStats.rows.length);
+		let row = spouseStats.insertRow(spouseStats.rows.length - 1);
 		let currentClass = row.insertCell(0).innerHTML = '<span id="spouseRow'+spouseStats.rows.length+'class"></span>';
 		let level = row.insertCell(1).innerHTML = '<span id="spouseRow'+spouseStats.rows.length+'level"></span>';
 		let hp = row.insertCell(2).innerHTML = '<span id="spouseRow'+spouseStats.rows.length+'HP"></span>';
@@ -1548,7 +1610,7 @@ function generateSpouseTable(){
 		}
 		this["spouseRow" + spouseStats.rows.length + "internal"].innerHTML = "<b>"+(1*Math.min(spouseCurrentStats[9], levelCap) + 1*startingLevel + 20*promotedClasses.includes(spouseClassName))+"</b>";
 		for (let j = startingLevel+1; j <= spouseReclasses[i][1]; j++){
-			let row = spouseStats.insertRow(spouseStats.rows.length);
+			let row = spouseStats.insertRow(spouseStats.rows.length - 1);
 			let currentClass = row.insertCell(0).innerHTML = '<span id="spouseRow'+spouseStats.rows.length+'class"></span>';
 			let level = row.insertCell(1).innerHTML = '<span id="spouseRow'+spouseStats.rows.length+'level"></span>';
 			let hp = row.insertCell(2).innerHTML = '<span id="spouseRow'+spouseStats.rows.length+'HP"></span>';
@@ -1601,6 +1663,7 @@ function generateSpouseTable(){
 			this["spouseRow" + spouseStats.rows.length + "internal"].innerHTML = "<b>"+(1*Math.min(spouseCurrentStats[9], levelCap) + 1*j + 20*promotedClasses.includes(spouseClassName))+"</b>";
 		}
 	}
+	spousePairUp();
 }
 
 function generateChildTable(){
@@ -1613,7 +1676,7 @@ function generateChildTable(){
 		childStatGrowth[i] = childBaseStats[i] - classBases.get(charBases.get(child.innerHTML)[0])[i];
 	}
 	childCurrentStats[9] = 0;
-	while (childStats.rows.length > 1){
+	while (childStats.rows.length > 2){
 		childStats.deleteRow(1);
 	}
 	for (let i = 0; i < childReclasses.length; i++){
@@ -1635,7 +1698,7 @@ function generateChildTable(){
 			}
 		}
 		if (i > 0){
-			let row = childStats.insertRow(childStats.rows.length);
+			let row = childStats.insertRow(childStats.rows.length - 1);
 			let currentClass = row.insertCell(0).outerHTML = "<th>Class</th>";
 			let level = row.insertCell(1).outerHTML = "<th>Level</th>";
 			let hp = row.insertCell(2).outerHTML = "<th>HP</th>";
@@ -1649,7 +1712,7 @@ function generateChildTable(){
 			let mov = row.insertCell(10).outerHTML = "<th>Mov</th>";
 			let internal = row.insertCell(11).outerHTML = "<th>Internal</th>";
 		}
-		let row = childStats.insertRow(childStats.rows.length);
+		let row = childStats.insertRow(childStats.rows.length - 1);
 		let currentClass = row.insertCell(0).innerHTML = '<span id="childRow'+childStats.rows.length+'class"></span>';
 		let level = row.insertCell(1).innerHTML = '<span id="childRow'+childStats.rows.length+'level"></span>';
 		let hp = row.insertCell(2).innerHTML = '<span id="childRow'+childStats.rows.length+'HP"></span>';
@@ -1694,7 +1757,7 @@ function generateChildTable(){
 		}
 		this["childRow" + childStats.rows.length + "internal"].innerHTML = "<b>"+(1*Math.min(childCurrentStats[9], levelCap) + 1*startingLevel + 20*promotedClasses.includes(childClassName))+"</b>";
 		for (let j = startingLevel+1; j <= childReclasses[i][1]; j++){
-			let row = childStats.insertRow(childStats.rows.length);
+			let row = childStats.insertRow(childStats.rows.length - 1);
 			let currentClass = row.insertCell(0).innerHTML = '<span id="childRow'+childStats.rows.length+'class"></span>';
 			let level = row.insertCell(1).innerHTML = '<span id="childRow'+childStats.rows.length+'level"></span>';
 			let hp = row.insertCell(2).innerHTML = '<span id="childRow'+childStats.rows.length+'HP"></span>';
@@ -1747,6 +1810,7 @@ function generateChildTable(){
 			this["childRow" + childStats.rows.length + "internal"].innerHTML = "<b>"+(1*Math.min(childCurrentStats[9], levelCap) + 1*j + 20*promotedClasses.includes(childClassName))+"</b>";
 		}
 	}
+	childPairUp();
 }
 
 function generateSiblingTable(){
@@ -1759,7 +1823,7 @@ function generateSiblingTable(){
 		siblingStatGrowth[i] = siblingBaseStats[i] - classBases.get(charBases.get(sibling.innerHTML)[0])[i];
 	}
 	siblingCurrentStats[9] = 0;
-	while (siblingStats.rows.length > 1){
+	while (siblingStats.rows.length > 2){
 		siblingStats.deleteRow(1);
 	}
 	for (let i = 0; i < siblingReclasses.length; i++){
@@ -1781,7 +1845,7 @@ function generateSiblingTable(){
 			}
 		}
 		if (i > 0){
-			let row = siblingStats.insertRow(siblingStats.rows.length);
+			let row = siblingStats.insertRow(siblingStats.rows.length - 1);
 			let currentClass = row.insertCell(0).outerHTML = "<th>Class</th>";
 			let level = row.insertCell(1).outerHTML = "<th>Level</th>";
 			let hp = row.insertCell(2).outerHTML = "<th>HP</th>";
@@ -1795,7 +1859,7 @@ function generateSiblingTable(){
 			let mov = row.insertCell(10).outerHTML = "<th>Mov</th>";
 			let internal = row.insertCell(11).outerHTML = "<th>Internal</th>";
 		}
-		let row = siblingStats.insertRow(siblingStats.rows.length);
+		let row = siblingStats.insertRow(siblingStats.rows.length - 1);
 		let currentClass = row.insertCell(0).innerHTML = '<span id="siblingRow'+siblingStats.rows.length+'class"></span>';
 		let level = row.insertCell(1).innerHTML = '<span id="siblingRow'+siblingStats.rows.length+'level"></span>';
 		let hp = row.insertCell(2).innerHTML = '<span id="siblingRow'+siblingStats.rows.length+'HP"></span>';
@@ -1840,7 +1904,7 @@ function generateSiblingTable(){
 		}
 		this["siblingRow" + siblingStats.rows.length + "internal"].innerHTML = "<b>"+(1*Math.min(siblingCurrentStats[9], levelCap) + 1*startingLevel + 20*promotedClasses.includes(siblingClassName))+"</b>";
 		for (let j = startingLevel+1; j <= siblingReclasses[i][1]; j++){
-			let row = siblingStats.insertRow(siblingStats.rows.length);
+			let row = siblingStats.insertRow(siblingStats.rows.length - 1);
 			let currentClass = row.insertCell(0).innerHTML = '<span id="siblingRow'+siblingStats.rows.length+'class"></span>';
 			let level = row.insertCell(1).innerHTML = '<span id="siblingRow'+siblingStats.rows.length+'level"></span>';
 			let hp = row.insertCell(2).innerHTML = '<span id="siblingRow'+siblingStats.rows.length+'HP"></span>';
@@ -1893,6 +1957,7 @@ function generateSiblingTable(){
 			this["siblingRow" + siblingStats.rows.length + "internal"].innerHTML = "<b>"+(1*Math.min(siblingCurrentStats[9], levelCap) + 1*j + 20*promotedClasses.includes(siblingClassName))+"</b>";
 		}
 	}
+	siblingPairUp();
 }
 
 function levelParent(){
@@ -2129,6 +2194,34 @@ function resetSibling(){
 	}
 }
 
+function parentPairUp(){
+	for (let i = 1; i < 9; i++){
+		this["parent"+stats[i]].innerHTML = pairUpBonuses.get(parentReclasses[parentReclasses.length-1][0])[i] + Math.min(Math.floor(Math.round(parentCurrentStats[i]) / 10), 3) * (i < 8) + (pairUpBonuses.get(parentReclasses[parentReclasses.length-1][0])[i] > 0 && i < 8) * parentRank.selectedIndex;
+	}
+}
+
+function spousePairUp(){
+	for (let i = 1; i < 9; i++){
+		this["spouse"+stats[i]].innerHTML = pairUpBonuses.get(spouseReclasses[spouseReclasses.length-1][0])[i] + Math.min(Math.floor(Math.round(spouseCurrentStats[i]) / 10), 3) * (i < 8) + (pairUpBonuses.get(spouseReclasses[spouseReclasses.length-1][0])[i] > 0 && i < 8) * spouseRank.selectedIndex;
+	}
+}
+
+function childPairUp(){
+	if (childStats.rows.length > 2){
+		for (let i = 1; i < 9; i++){
+			this["child"+stats[i]].innerHTML = pairUpBonuses.get(childReclasses[childReclasses.length-1][0])[i] + Math.min(Math.floor(Math.round(childCurrentStats[i]) / 10), 3) * (i < 8) + (pairUpBonuses.get(childReclasses[childReclasses.length-1][0])[i] > 0 && i < 8) * childRank.selectedIndex;
+		}
+	}
+}
+
+function siblingPairUp(){
+	if (siblingStats.rows.length > 2){
+		for (let i = 1; i < 9; i++){
+			this["sibling"+stats[i]].innerHTML = pairUpBonuses.get(siblingReclasses[siblingReclasses.length-1][0])[i] + Math.min(Math.floor(Math.round(siblingCurrentStats[i]) / 10), 3) * (i < 8) + (pairUpBonuses.get(siblingReclasses[siblingReclasses.length-1][0])[i] > 0 && i < 8) * siblingRank.selectedIndex;
+		}
+	}
+}
+
 var difficulty = document.getElementById("difficulty");
 var growthsMode = document.getElementById("growthsMode");
 var asset = document.getElementById("asset");
@@ -2185,6 +2278,49 @@ var spouseStats = document.getElementById("spouseStats");
 var childStats = document.getElementById("childStats");
 var siblingStats = document.getElementById("siblingStats");
 
+var parentRank = document.getElementById("parentRank");
+var parentSTR = document.getElementById("parentSTR");
+var parentMAG = document.getElementById("parentMAG");
+var parentSKL = document.getElementById("parentSKL");
+var parentSPD = document.getElementById("parentSPD");
+var parentLCK = document.getElementById("parentLCK");
+var parentDEF = document.getElementById("parentDEF");
+var parentRES = document.getElementById("parentRES");
+var parentMOV = document.getElementById("parentMOV");
+var spouseRank = document.getElementById("spouseRank");
+var spouseSTR = document.getElementById("spouseSTR");
+var spouseMAG = document.getElementById("spouseMAG");
+var spouseSKL = document.getElementById("spouseSKL");
+var spouseSPD = document.getElementById("spouseSPD");
+var spouseLCK = document.getElementById("spouseLCK");
+var spouseDEF = document.getElementById("spouseDEF");
+var spouseRES = document.getElementById("spouseRES");
+var spouseMOV = document.getElementById("spouseMOV");
+var childRank = document.getElementById("childRank");
+var childHP = document.getElementById("childHP");
+var childSTR = document.getElementById("childSTR");
+var childMAG = document.getElementById("childMAG");
+var childSKL = document.getElementById("childSKL");
+var childSPD = document.getElementById("childSPD");
+var childLCK = document.getElementById("childLCK");
+var childDEF = document.getElementById("childDEF");
+var childRES = document.getElementById("childRES");
+var childMOV = document.getElementById("childMOV");
+var siblingRank = document.getElementById("siblingRank");
+var siblingHP = document.getElementById("siblingHP");
+var siblingSTR = document.getElementById("siblingSTR");
+var siblingMAG = document.getElementById("siblingMAG");
+var siblingSKL = document.getElementById("siblingSKL");
+var siblingSPD = document.getElementById("siblingSPD");
+var siblingLCK = document.getElementById("siblingLCK");
+var siblingDEF = document.getElementById("siblingDEF");
+var siblingRES = document.getElementById("siblingRES");
+var siblingMOV = document.getElementById("siblingMOV");
+parentRank.selectedIndex = 0;
+spouseRank.selectedIndex = 0;
+childRank.selectedIndex = 0;
+siblingRank.selectedIndex = 0;
+
 var levelCap = 50;
 
 spouse.remove(0);
@@ -2217,3 +2353,8 @@ childStatGrowth = [];
 siblingStats.deleteRow(1);
 siblingCurrentStats = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 siblingStatGrowth = [];
+
+for (let i = 0; i < 9; i++){
+	this["child"+stats[i]].innerHTML = "–"
+	this["sibling"+stats[i]].innerHTML = "–"
+}
